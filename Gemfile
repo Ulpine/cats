@@ -41,11 +41,16 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "bootstrap", "~> 5.2"
-gem "devise"
+gem "devise", "~> 4.9.4"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+
+gem 'pundit'  # pour la gestion des autorisations
+gem 'stripe'  # pour les paiements
+gem 'image_processing' # pour la gestion des images
+gem 'sprockets-rails' # pour les assets
 
 group :development, :test do
   gem "dotenv-rails"
