@@ -3,4 +3,8 @@ class PagesController < ApplicationController
   def home
     @featured_products = Product.featured.limit(6)
   end
+
+  def about
+    # Add any necessary logic for the about page
+  end
 end

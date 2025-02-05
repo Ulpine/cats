@@ -9,7 +9,7 @@
     <!-- Navigation Links -->
     <div class="navbar__links">
       <%= link_to "Accueil", root_path, class: "navbar__link #{current_page?(root_path) ? 'active' : ''}" %>
-      <%#= link_to "Qui sommes-nous ?", about_path, class: "navbar__link #{current_page?(about_path) ? 'active' : ''}" %>
+      <%= link_to "Qui sommes-nous ?", about_path, class: "navbar__link #{current_page?(about_path) ? 'active' : ''}" %>
       <%#= link_to "Blog", blog_path, class: "navbar__link #{current_page?(blog_path) ? 'active' : ''}" %>
     </div>
 
