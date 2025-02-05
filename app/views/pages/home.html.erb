@@ -1,2 +1,86 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-container">
+  <!-- Nav Section -->
+
+
+  <div class="home-page">
+  <!-- Banner Section -->
+  <div class="banner">
+    <%= image_tag "chatbanner.jpg", class: "banner__image" %>
+    <div class="banner__overlay">
+      <div class="banner__content">
+        <h1>Bienvenue sur Notre Boutique</h1>
+        <p>Découvrez nos produits d'exception</p>
+        <%= link_to "Voir tous nos produits", products_path, class: "banner__button" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Products Section -->
+  <div class="featured-products">
+    <h2>Nos Produits Phares</h2>
+
+    <div class="products-grid">
+      <% @featured_products.each do |product| %>
+        <div class="product-card" data-aos="fade-up">
+          <%= link_to product_path(product) do %>
+            <%= image_tag product.image_url, class: "product-card__image" if product.image_url %>
+            <div class="product-card__content">
+              <h3><%= product.name %></h3>
+              <p><%= product.short_description %></p>
+              <div class="product-card__footer">
+                <span class="product-card__price"><%= number_to_currency(product.price, unit: "€") %></span>
+                <%= button_to "Voir le produit", product_path(product), method: :get, class: "product-card__button" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__content">
+      <div class="footer__section">
+        <h4>À propos</h4>
+        <ul>
+          <li><a href="#">Qui sommes-nous ?</a></li>
+          <li><a href="#">Notre histoire</a></li>
+          <li><a href="#">Nos valeurs</a></li>
+        </ul>
+      </div>
+      <div class="footer__section">
+        <h4>Service Client</h4>
+        <ul>
+          <li><a href="#">Nous contacter</a></li>
+          <li><a href="#">Suivi de commande</a></li>
+          <li><a href="#">Politique de retour</a></li>
+        </ul>
+      </div>
+      <div class="footer__section">
+        <h4>Informations légales</h4>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Conditions générales de vente</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+      <div class="footer__section">
+        <h4>Suivez-nous</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2023 Votre Entreprise. Tous droits réservés.</p>
+      <p>Siège social : 123 Rue des Exemples, 75000 Paris, France</p>
+      <p>RCS Paris 123 456 789 - SIRET 12 345 678 90 123 - TVA intracommunautaire FR12345678901</p>
+    </div>
+  </div>
+</footer>

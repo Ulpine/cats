@@ -1,38 +1,68 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<!-- app/views/shared/_navbar.html.erb -->
+<nav class="navbar">
+  <div class="navbar__container">
+    <!-- Logo -->
+    <%= link_to root_path, class: "navbar__logo" do %>
+      <%= image_tag "logo.png", alt: "Logo" %>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+    <!-- Navigation Links -->
+    <div class="navbar__links">
+      <%= link_to "Accueil", root_path, class: "navbar__link #{current_page?(root_path) ? 'active' : ''}" %>
+      <%#= link_to "Qui sommes-nous ?", about_path, class: "navbar__link #{current_page?(about_path) ? 'active' : ''}" %>
+      <%#= link_to "Blog", blog_path, class: "navbar__link #{current_page?(blog_path) ? 'active' : ''}" %>
     </div>
+
+    <!-- Cart -->
+    <div class="navbar__cart">
+      <button class="cart-toggle" data-cart-toggle>
+        <i class="fas fa-shopping-cart"></i>
+        <% if current_user && @cart&.order_items&.any? %>
+          <span class="cart-count"><%= @cart.order_items.sum(:quantity) %></span>
+          <span class="cart-total"><%= number_to_currency(@cart.total) %></span>
+        <% end %>
+      </button>
+
+      <!-- Mini Cart Dropdown -->
+      <div class="mini-cart" data-mini-cart>
+        <% if current_user && @cart&.order_items&.any? %>
+          <div class="mini-cart__items">
+            <% @cart.order_items.includes(:product).each do |item| %>
+              <div class="mini-cart__item">
+                <%= image_tag item.product.image_url, class: "mini-cart__item-image" if item.product.image_url %>
+                <div class="mini-cart__item-details">
+                  <h4><%= item.product.name %></h4>
+                  <p><%= item.quantity %> × <%= number_to_currency(item.product.price) %></p>
+                </div>
+                <%= button_to cart_remove_item_path(@cart, product_id: item.product.id),
+                    method: :delete,
+                    class: "mini-cart__remove",
+                    remote: true do %>
+                  <i class="fas fa-times"></i>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="mini-cart__total">
+              <span>Total</span>
+              <span><%= number_to_currency(@cart.total) %></span>
+            </div>
+            <%= link_to "Voir mon panier", cart_path, class: "mini-cart__button" %>
+            <%= link_to "Commander", checkout_orders_path, class: "mini-cart__button mini-cart__button--checkout" %>
+          </div>
+        <% else %>
+          <div class="mini-cart__empty">
+            <i class="fas fa-shopping-bag"></i>
+            <p>Votre panier est vide</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="navbar__mobile-toggle" data-mobile-toggle>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
-</div>
+</nav>

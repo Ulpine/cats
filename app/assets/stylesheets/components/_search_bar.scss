@@ -1,0 +1,50 @@
+.top-bar {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: white;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 500px;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-total {
+  color: #666;
+}

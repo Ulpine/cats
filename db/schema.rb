@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_29_152043) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_04_162948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "product_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.decimal "unit_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,9 +36,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_29_152043) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.decimal "price", precision: 10, scale: 2
+    t.text "short_description"
     t.text "description"
-    t.decimal "price"
-    t.string "image"
+    t.string "image_url"
+    t.boolean "featured", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

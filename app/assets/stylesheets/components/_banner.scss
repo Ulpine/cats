@@ -1,0 +1,48 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  &__image {
+    width: 100%;
+    height: 24rem;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    text-align: center;
+    color: $background-white;
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__button {
+    background-color: $background-white;
+    color: $primary-text;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    @include hover-transition;
+
+    &:hover {
+      background-color: darken($background-white, 5%);
+    }
+  }
+}

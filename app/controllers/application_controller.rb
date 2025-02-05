@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :authenticate_user!
+  before_action :set_cart
 
   private
 
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
     redirect_to(root_path)
+  end
+
+  def set_cart
+    @cart = current_user.orders.find_or_create_by(status: 'cart') if current_user
   end
 end

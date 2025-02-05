@@ -1,2 +1,55 @@
-<h1>Cart#show</h1>
-<p>Find me in app/views/cart/show.html.erb</p>
+<div class="cart-page">
+  <div class="cart-container">
+    <h1>Mon Panier</h1>
+
+    <% if @cart_items.any? %>
+      <div class="cart-items">
+        <% @cart_items.each do |item| %>
+          <div class="cart-item" data-item-id="<%= item.product_id %>">
+            <div class="cart-item__image">
+              <%= image_tag item.product.image_url if item.product.image_url %>
+            </div>
+
+            <div class="cart-item__details">
+              <h3><%= item.product.name %></h3>
+              <p class="cart-item__price"><%= number_to_currency(item.product.price) %></p>
+            </div>
+
+            <div class="cart-item__quantity">
+              <button class="quantity-btn decrease">-</button>
+              <input type="number" value="<%= item.quantity %>" min="1" max="99" class="quantity-input">
+              <button class="quantity-btn increase">+</button>
+            </div>
+
+            <div class="cart-item__total">
+              <p><%= number_to_currency(item.product.price * item.quantity) %></p>
+            </div>
+
+            <div class="cart-item__remove">
+              <%= button_to cart_remove_item_path(item.product),
+                  method: :delete,
+                  class: "remove-btn",
+                  remote: true do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="cart-summary">
+          <div class="cart-total">
+            <span>Total</span>
+            <span class="total-amount"><%= number_to_currency(@total) %></span>
+          </div>
+          <%= link_to "Valider ma commande", checkout_orders_path, class: "checkout-btn" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="empty-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <p>Votre panier est vide</p>
+        <%= link_to "Continuer mes achats", products_path, class: "continue-shopping-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
