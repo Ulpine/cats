@@ -1,2 +1,20 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="featured-products">
+  <h2>Notre selection pour vos chats</h2>
+  <div class="products-grid">
+    <% @products.each do |product| %>
+      <div class="product-card" data-aos="fade-up">
+        <%= link_to product_path(product) do %>
+          <%= image_tag product.image_url, class: "product-card__image" if product.image_url %>
+          <div class="product-card__content">
+            <h3><%= product.name %></h3>
+            <p><%= product.short_description %></p>
+            <div class="product-card__footer">
+              <span class="product-card__price"><%= number_to_currency(product.price, unit: "€") %></span>
+              <%= button_to "Voir le produit", product_path(product), method: :get, class: "product-card__button" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

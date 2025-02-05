@@ -26,12 +26,12 @@
             </div>
 
             <div class="cart-item__remove">
-              <%= button_to cart_remove_item_path(item.product),
-                  method: :delete,
-                  class: "remove-btn",
-                  remote: true do %>
-                <i class="fas fa-trash"></i>
-              <% end %>
+                <%= button_to remove_item_cart_path(product_id: item.product.id),
+                    method: :delete,
+                    class: "mini-cart__remove",
+                    remote: true do %>
+                  <i class="fas fa-times"></i>
+                <% end %>
             </div>
           </div>
         <% end %>

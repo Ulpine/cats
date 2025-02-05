@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :products, only: [:index, :show]
 
-  resources :cart, only: [:show] do
+  resource :cart, only: [:show], controller: 'cart' do
     post "add/:product_id", to: "cart#add_item", as: :add_item
     delete "remove/:product_id", to: "cart#remove_item", as: :remove_item
     patch "update/:product_id", to: "cart#update_quantity", as: :update_quantity
