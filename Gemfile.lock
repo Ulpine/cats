@@ -87,9 +87,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    bootstrap (5.3.3)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.11.8, < 3)
     brakeman (7.0.0)
       racc
     builder (3.3.0)
@@ -223,7 +220,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -242,7 +238,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.8)
+    rack (3.1.9)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -281,7 +277,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    rdoc (6.11.0)
+    rdoc (6.12.0)
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
     reline (0.6.0)
@@ -343,7 +339,7 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_cache (1.0.6)
+    solid_cache (1.0.7)
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
@@ -428,7 +424,6 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
-  bootstrap (~> 5.2)
   brakeman
   capybara
   debug
