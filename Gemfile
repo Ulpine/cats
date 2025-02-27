@@ -51,7 +51,7 @@ gem 'stripe'  # pour les paiements
 gem 'image_processing' # pour la gestion des images
 gem 'sprockets-rails' # pour les assets
 gem "kaminari", "~> 1.2" # pour la pagination
-gem "tailwindcss-rails", "~> 3.3" # pour le CSS
+gem "tailwindcss-rails", "~> 4.1" # pour le CSS
 gem 'rails_admin', '~> 3.0'
 
 group :development, :test do
