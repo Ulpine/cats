@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "pages#home"
-  get 'about', to: 'pages#about'
+  get "about", to: "pages#about"
+
+  get 'bien-etre-felin', to: 'articles#index', as: :articles
+  post 'cart/add', to: 'cart#add'
+
+  resources :articles, only: [:show], param: :slug do
+    collection do
+      get "category/:category_slug", action: :by_category, as: :by_category
+    end
+  end
 
   devise_for :users
   resources :products, only: [:index, :show]

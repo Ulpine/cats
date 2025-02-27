@@ -1,11 +1,81 @@
 <!-- app/views/pages/about.html.erb -->
-<div class="container mx-auto px-4 py-8">
-  <h1 class="text-4xl font-bold mb-6">Qui sommes-nous ?</h1>
+<div class="about-us-page" data-controller="about">
+  <header class="about-us-header" data-about-target="header">
+    <h1 class="about-us-title" data-about-target="title">Qui sommes-nous ?</h1>
+    <div class="about-us-paw-print"></div>
+  </header>
 
-  <div class="prose max-w-none">
-    <p>Notre entreprise est passionnée par le bien-être des chats. Nous proposons des produits soigneusement sélectionnés pour offrir le meilleur confort à nos amis félins.</p>
+  <main class="about-us-container">
+    <section class="about-us-intro" data-about-target="section">
+      <p class="about-us-intro-text" data-about-target="text">Bienvenue dans notre univers dédié aux amoureux des chats ! Nous sommes Léo et Camille, passionnés par le bien-être de nos compagnons félins. Ayant grandi entourés de chats, nous avons développé une véritable expertise sur leurs besoins et leurs préférences. Notre objectif est simple : proposer des produits de qualité, testés et approuvés par nos propres animaux, afin d'assurer confort et bonheur à tous les chats.</p>
+    </section>
 
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Notre mission</h2>
-    <p>Nous croyons que chaque chat mérite le maximum de confort et de bonheur. Chacun de nos produits est choisi avec soin pour répondre aux besoins uniques de nos compagnons à quatre pattes.</p>
-  </div>
+    <section class="about-us-story" data-about-target="section">
+      <div class="about-us-story-content">
+        <p data-about-target="text">Nous avons créé cette boutique en ligne pour partager nos découvertes et offrir aux propriétaires de chats les meilleurs accessoires, jouets et produits d'hygiène. Parce que nos compagnons méritent ce qu'il y a de mieux, nous privilégions des articles soigneusement sélectionnés auprès de fournisseurs européens réputés pour leur savoir-faire et leur engagement envers le bien-être animal.</p>
+      </div>
+    </section>
+
+    <section class="about-us-cats" data-about-target="section">
+      <h2 class="about-us-section-title">Nos Experts Testeurs</h2>
+      <div class="about-us-cats-grid">
+        <div class="about-us-cat-card" data-about-target="catCard">
+          <div class="about-us-cat-image-container">
+            <img src="<%= asset_path('vador.jpg') %>" alt="Vador, notre jeune chat espiègle" class="about-us-cat-image">
+            <div class="about-us-cat-info">
+              <h3>Vador</h3>
+              <p>Notre petit explorateur né le 6 mai 2024</p>
+              <p class="about-us-cat-description">Expert en jouets et accessoires ludiques</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-us-cat-card" data-about-target="catCard">
+          <div class="about-us-cat-image-container">
+            <img src="<%= asset_path('rio.jpg') %>" alt="Rio, notre chat sage et câlin" class="about-us-cat-image">
+            <div class="about-us-cat-info">
+              <h3>Rio</h3>
+              <p>Notre sage de 5 ans</p>
+              <p class="about-us-cat-description">Expert en confort et douceur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-us-values" data-about-target="section">
+      <h2 class="about-us-section-title">Nos Engagements</h2>
+      <div class="about-us-values-grid">
+        <div class="about-us-value-card" data-about-target="valueCard">
+          <i class="fas fa-heart"></i>
+          <h3>Qualité Testée</h3>
+          <p>Chaque produit est validé par nos experts à quatre pattes</p>
+        </div>
+        <div class="about-us-value-card" data-about-target="valueCard">
+          <i class="fas fa-globe-europe"></i>
+          <h3>Production Européenne</h3>
+          <p>Des fournisseurs sélectionnés pour leur savoir-faire</p>
+        </div>
+        <div class="about-us-value-card" data-about-target="valueCard">
+          <i class="fas fa-camera"></i>
+          <h3>Transparence</h3>
+          <p>Suivez nos tests en direct sur les réseaux sociaux</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-us-social" data-about-target="section">
+      <h2 class="about-us-section-title">Suivez Nos Aventures</h2>
+      <div class="about-us-social-links">
+        <a href="#" class="about-us-social-link" data-about-target="socialLink">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+        <a href="#" class="about-us-social-link" data-about-target="socialLink">
+          <i class="fab fa-facebook"></i>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </section>
+  </main>
 </div>

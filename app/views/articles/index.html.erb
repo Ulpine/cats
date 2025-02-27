@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="page-title">Bien-Être Félin</h1>
+
+  <!-- Filtres par catégorie -->
+  <nav class="category-filter">
+    <% @categories.each do |category| %>
+      <%= link_to category.name,
+          by_category_articles_path(category_slug: category.slug),
+          class: 'category-link',
+          data: { category: category.slug }
+      %>
+    <% end %>
+  </nav>
+
+  <!-- Grille d'articles -->
+  <div class="blog-grid">
+    <% @articles.each do |article| %>
+      <div class="article-card" data-category="<%= article.category.slug %>">
+        <% if article.image.attached? %>
+          <%= image_tag article.image, alt: article.title, class: 'article-image' %>
+        <% else %>
+          <div class="article-image placeholder">Pas d'image</div>
+        <% end %>
+
+        <div class="article-content">
+          <h2 class="article-title"><%= article.title %></h2>
+          <p class="article-excerpt"><%= truncate(article.content, length: 150) %></p>
+          <%= link_to "Lire l'article", article_path(article), class: 'read-more-btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <%= paginate @articles %>
+  </div>
+</div>

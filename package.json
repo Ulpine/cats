@@ -1,0 +1,7 @@
+{
+  "name": "cats",
+  "packageManager": "yarn@4.3.1",
+  "dependencies": {
+    "@hotwired/stimulus": "3.2.2"
+  }
+}

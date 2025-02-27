@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const cartItems = document.querySelectorAll('.cart-item');
 
   cartItems.forEach(item => {
@@ -6,63 +6,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const quantityInput = item.querySelector('.quantity-input');
     const decreaseBtn = item.querySelector('.decrease');
     const increaseBtn = item.querySelector('.increase');
-    let timeout;
+    const itemTotalElement = item.querySelector('.item-total');
+    const cartTotalElement = document.querySelector('.total-amount');
 
-    // Gestion des boutons + et -
-    decreaseBtn?.addEventListener('click', () => {
-      if (quantityInput.value > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
-        updateQuantity(productId, quantityInput.value);
+    decreaseBtn.addEventListener('click', function() {
+      let currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity > 1) {
+        updateQuantity(productId, currentQuantity - 1);
       }
     });
 
-    increaseBtn?.addEventListener('click', () => {
-      quantityInput.value = parseInt(quantityInput.value) + 1;
-      updateQuantity(productId, quantityInput.value);
+    increaseBtn.addEventListener('click', function() {
+      let currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity < 99) {
+        updateQuantity(productId, currentQuantity + 1);
+      }
     });
 
-    // Gestion de la saisie manuelle
-    quantityInput?.addEventListener('change', () => {
-      let value = parseInt(quantityInput.value);
-
-      // Valider les limites
-      if (value < 1) value = 1;
-      if (value > 99) value = 99;
-
-      quantityInput.value = value;
-      updateQuantity(productId, value);
-    });
-  });
-
-  // Fonction pour mettre à jour la quantité
-  function updateQuantity(productId, quantity) {
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
+    function updateQuantity(productId, newQuantity) {
+      // Mise à jour de l'URL pour correspondre à vos routes
       fetch(`/cart/update/${productId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
         },
-        body: JSON.stringify({ quantity: quantity })
+        body: JSON.stringify({
+          quantity: newQuantity
+        })
       })
       .then(response => response.json())
       .then(data => {
-        // Mettre à jour les totaux
-        const itemContainer = document.querySelector(`.cart-item[data-item-id="${productId}"]`);
-        if (itemContainer) {
-          const priceElement = itemContainer.querySelector('.item-price');
-          const totalElement = document.querySelector('.cart-total');
+        // Mettre à jour la quantité
+        quantityInput.value = newQuantity;
 
-          if (priceElement && totalElement) {
-            const unitPrice = parseFloat(priceElement.dataset.unitPrice);
-            const newPrice = (unitPrice * quantity).toFixed(2);
-            priceElement.textContent = `${newPrice} €`;
-          }
-        }
+        // Mettre à jour le total de l'article
+        itemTotalElement.textContent = data.item_total;
+
+        // Mettre à jour le total du panier
+        cartTotalElement.textContent = data.cart_total;
       })
-      .catch(error => console.error('Erreur de mise à jour du panier:', error));
-    }, 500); // Ajout d'un délai pour éviter les requêtes excessives
-  }
+      .catch(error => {
+        console.error('Erreur:', error);
+        alert('Erreur lors de la mise à jour de la quantité');
+      });
+    }
+  });
 });

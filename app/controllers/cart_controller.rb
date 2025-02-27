@@ -33,7 +33,7 @@ class CartController < ApplicationController
 
     if item.update(quantity: params[:quantity])
       render json: {
-        item_total: helpers.number_to_currency(item.total),
+        item_total: helpers.number_to_currency(item.product.price * item.quantity),
         cart_total: helpers.number_to_currency(calculate_total)
       }
     else

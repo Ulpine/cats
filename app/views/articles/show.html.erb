@@ -1,0 +1,23 @@
+<div class="article-show" data-controller="article">
+  <div class="article-hero">
+    <div class="container">
+      <h1 class="article-title"><%= @article.title %></h1>
+      <p class="article-summary"><%= @article.summary %></p>
+      <div class="article-meta">
+        <span class="date">Publié le <%= l @article.published_at, format: :long %></span>
+        <span class="category"><%= @article.category.name %></span>
+      </div>
+
+      <!-- Ajout d'un bouton pour tester Stimulus -->
+      <button data-action="click->article#toggle">
+        Afficher/Masquer le contenu
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <article class="article-content" data-article-target="content">
+      <%= sanitize @article.display_content.html_safe %>
+    </article>
+  </div>
+</div>

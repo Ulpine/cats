@@ -50,6 +50,9 @@ gem 'pundit'  # pour la gestion des autorisations
 gem 'stripe'  # pour les paiements
 gem 'image_processing' # pour la gestion des images
 gem 'sprockets-rails' # pour les assets
+gem "kaminari", "~> 1.2" # pour la pagination
+gem "tailwindcss-rails", "~> 3.3" # pour le CSS
+gem 'rails_admin', '~> 3.0'
 
 group :development, :test do
   gem "dotenv-rails"
@@ -73,5 +76,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "tailwindcss-rails", "~> 3.3"
+gem "sassc-rails"

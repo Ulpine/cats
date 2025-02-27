@@ -6,3 +6,10 @@ fr:
         delimiter: ' '
         separator: ','
         format: '%n %u'
+
+fr:
+  time:
+    formats:
+      default: "%d/%m/%Y" # Format par défaut
+      long: "%A %d %B %Y à %H:%M" # Exemple: "mardi 06 février 2024 à 14:30"
+      short: "%d %b %H:%M" # Exemple: "06 fév 14:30"

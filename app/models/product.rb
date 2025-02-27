@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :order_items
+  belongs_to :category
   scope :featured, -> { where(featured: true) }
 
   validates :name, presence: true

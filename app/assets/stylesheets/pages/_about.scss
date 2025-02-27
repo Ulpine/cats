@@ -1,0 +1,213 @@
+.about-us-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  overflow-x: hidden;
+
+  .about-us-header {
+    position: relative;
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(45deg, rgba(74,144,226,0.1) 0%, rgba(245,166,35,0.1) 100%);
+    margin-bottom: 3rem;
+
+    .about-us-title {
+      font-size: 3rem;
+      color: $text-color;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp $animation-duration ease-out forwards;
+    }
+
+    .about-us-paw-print {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15C0 6.716 6.716 0 15 0z' fill='%234A90E2' opacity='0.5'/%3E%3C/svg%3E") no-repeat;
+      opacity: 0.5;
+
+      &:nth-child(odd) {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      &:nth-child(even) {
+        animation: float 3s ease-in-out infinite reverse;
+      }
+    }
+  }
+
+  .about-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  section {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+
+    &.visible {
+      animation: fadeInUp $animation-duration ease-out forwards;
+    }
+  }
+
+  .about-us-cats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .about-us-cat-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+
+      .about-us-cat-info {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .about-us-cat-image-container {
+      position: relative;
+      padding-top: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .about-us-cat-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+
+      h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .about-us-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .about-us-value-card {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    i {
+      font-size: 2rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+      color: $text-color;
+    }
+  }
+
+  .about-us-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .about-us-social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    background: white;
+    color: $text-color;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      color: $primary-color;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .about-us-page {
+    .about-us-header .about-us-title {
+      font-size: 2rem;
+    }
+
+    .about-us-cats-grid,
+    .about-us-values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-us-social-links {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

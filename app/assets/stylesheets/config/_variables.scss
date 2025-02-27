@@ -1,6 +1,8 @@
 // app/assets/stylesheets/config/_variables.scss
-$primary-color: #16a34a;
-$text-color: #ffffff;
+$primary-color: #2C614F;
+$secondary-color: #8BA888;
+$accent-color: #D4B59E;
+$text-color: #333333;
 $hover-color: #9ca3af;
 $border-color: #374151;
 
@@ -8,3 +10,8 @@ $max-width: 80rem; // max-w-7xl
 $primary-text: #000000;
 $secondary-text: #666666;
 $background-white: #ffffff;
+
+$card-shadow: 0 8px 16px rgba(0,0,0,0.1);
+$background-color: #F5F5F0;
+$light-bg: #F8F9FA;
+$animation-duration: 0.6s;

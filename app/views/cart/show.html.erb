@@ -16,22 +16,28 @@
             </div>
 
             <div class="cart-item__quantity">
-              <button class="quantity-btn decrease">-</button>
-              <input type="number" value="<%= item.quantity %>" min="1" max="99" class="quantity-input">
-              <button class="quantity-btn increase">+</button>
+              <button class="quantity-btn decrease" data-product-id="<%= item.product_id %>">-</button>
+              <input type="number"
+                     value="<%= item.quantity %>"
+                     min="1"
+                     max="99"
+                     class="quantity-input"
+                     data-product-id="<%= item.product_id %>"
+                     readonly>
+              <button class="quantity-btn increase" data-product-id="<%= item.product_id %>">+</button>
             </div>
 
             <div class="cart-item__total">
-              <p><%= number_to_currency(item.product.price * item.quantity) %></p>
+              <p class="item-total"><%= number_to_currency(item.product.price * item.quantity) %></p>
             </div>
 
             <div class="cart-item__remove">
-                <%= button_to remove_item_cart_path(product_id: item.product.id),
-                    method: :delete,
-                    class: "mini-cart__remove",
-                    remote: true do %>
-                  <i class="fas fa-times"></i>
-                <% end %>
+              <%= button_to remove_item_cart_path(product_id: item.product.id),
+                  method: :delete,
+                  class: "mini-cart__remove",
+                  remote: true do %>
+                <i class="fas fa-times"></i>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -53,3 +59,5 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_include_tag 'cart' %>
